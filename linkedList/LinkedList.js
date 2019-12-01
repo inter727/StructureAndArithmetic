@@ -58,6 +58,27 @@ class LinkedList {
     return node.element
   }
 
+  insert(position, element) {
+    if (position < 0 || position > this.length - 1) {
+      console.log('参数越界')
+      return false
+    }
+
+    let current = this.head
+    if (position > 0) {
+      let index = 0
+      while(index++ < position) {
+        current = current.next
+      }
+    }
+    let tempNode = current.next
+    const node = new Node(element)
+    current.next = node
+    node.next = tempNode
+    this.length++
+    return true
+  }
+
   toString() {
     let current = this.head,
         str = ''
