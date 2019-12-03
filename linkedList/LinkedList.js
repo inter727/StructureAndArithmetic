@@ -14,6 +14,7 @@ class LinkedList {
     this.length = 0
   }
 
+  //尾部追加元素
   append(element) {
     const node = new Node(element)
 
@@ -22,7 +23,6 @@ class LinkedList {
       this.length = 1
       return
     }
-
     let current = this.head
     while(current.next) {
       current = current.next
@@ -31,10 +31,8 @@ class LinkedList {
     this.length++
   }
 
-  remove(position) {
-    if (position == null) {
-      position = this.length - 1
-    }
+  //删除指定位置的元素
+  remove(position = this.length - 1) {
     if (position < 0 || position > this.length - 1) {
       console.log('参数越界')
       return
@@ -58,6 +56,25 @@ class LinkedList {
     return node.element
   }
 
+  //删除目标元素
+  removeTarget(element) {
+    let current = this.head,
+        previous = null
+    while(current && current.element !== element) {
+      previous = current
+      current = current.next
+    }
+    if (!current) {return false}
+    if (previous) {
+      previous.next = current.next
+    } else {
+      this.head = current.next
+    }
+    this.length--
+    return true
+  }
+
+  //在指定位置后面插入元素
   insert(position, element) {
     if (position < 0 || position > this.length - 1) {
       console.log('参数越界')
