@@ -33,33 +33,28 @@ class LinkedList {
 
   //删除指定位置的元素
   remove(position = this.length - 1) {
-    if (position < 0 || position > this.length - 1) {
+    if (position < 0 || position >= this.length) {
       console.log('参数越界')
       return
     }
 
-    let node = null
-    if (position === 0) {
-      node = this.head
-      this.head = this.head.next
-      this.length--
-      return node.element
-    }
-    let current = this.head,
-        index = 0
-    while(++index < position) {
+    let current = this.head, previous = null, index = 0
+    while(index++ < position) {
+      previous = current
       current = current.next
     }
-    node = current.next
-    current.next = node.next
+    if (previous) {
+      previous.next = current.next
+    } else {
+      this.head = current.next
+    }
     this.length--
-    return node.element
+    return current.element
   }
 
   //删除目标元素
   removeTarget(element) {
-    let current = this.head,
-        previous = null
+    let current = this.head, previous = null
     while(current && current.element !== element) {
       previous = current
       current = current.next
@@ -76,22 +71,19 @@ class LinkedList {
 
   //在指定位置后面插入元素
   insert(position, element) {
-    if (position < 0 || position > this.length - 1) {
+    if (position < 0 || position >= this.length) {
       console.log('参数越界')
       return false
     }
 
-    let current = this.head
-    if (position > 0) {
-      let index = 0
-      while(index++ < position) {
-        current = current.next
-      }
+    let current = this.head, index = 0
+    while(index++ < position) {
+      current = current.next
     }
-    let tempNode = current.next
     const node = new Node(element)
+    let next = current.next
     current.next = node
-    node.next = tempNode
+    node.next = next
     this.length++
     return true
   }
