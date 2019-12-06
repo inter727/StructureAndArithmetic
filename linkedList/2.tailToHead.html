@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>生成一个反序的数组</title>
+</head>
+<body>
+  <p>输入一个链表，按链表值从尾到头的顺序返回一个ArrayList</p>
+</body>
+<script src="LinkedList.js"></script>
+<script>
+  const linkedList = new LinkedList()
+  linkedList.append(1)
+  linkedList.append(2)
+  linkedList.append(3)
+  linkedList.append(4)
+  linkedList.append(5)
+  linkedList.append(6)
+
+  console.log(createListFromTailToHead(linkedList));
+
+  function createListFromTailToHead(list) {
+    let array = [], current = list.head
+    while(current) {
+      array.unshift(current.element)
+      current = current.next
+    }
+    return array
+  }
+</script>
+</html>
