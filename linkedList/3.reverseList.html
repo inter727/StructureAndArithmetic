@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>翻转链表</title>
+</head>
+<body>
+  输入一个链表，反转链表后，输出新链表表头
+</body>
+<script src="LinkedList.js"></script>
+<script>
+  const linkedList = new LinkedList()
+  linkedList.append(1)
+  linkedList.append(2)
+  linkedList.append(3)
+  linkedList.append(4)
+  linkedList.append(5)
+  linkedList.append(6)
+
+  console.log(reverseList(linkedList.head));
+
+  function reverseList(head) {
+    if (!head) {return head}
+    let current = head.next, next = null
+    while(current) {
+      next = current.next
+      current.next = head
+      head = current
+      current = next
+    }
+    return head
+  }
+</script>
+</html>
