@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>合并两个排序链表</title>
+</head>
+<body>
+  输入两个单调递增链表，输出两个链表合成后的链表，合成后的链表满足单调不递减
+</body>
+<script src="LinkedList.js"></script>
+<script>
+  const linkedList = new LinkedList()
+  linkedList.append(1)
+  linkedList.append(2)
+  linkedList.append(3)
+  linkedList.append(5)
+  linkedList.append(7)
+
+  const linkedList2 = new LinkedList()
+  linkedList2.append(2)
+  linkedList2.append(4)
+  linkedList2.append(5)
+  linkedList2.append(6)
+  linkedList2.append(8)
+  linkedList2.append(9)
+
+  // console.log(merge(linkedList.head, linkedList2.head));
+  console.log(merge2(linkedList.head, linkedList2.head));
+
+  function merge(aHead, bHead) {
+    if (!aHead || !bHead) {
+      return aHead || bHead
+    }
+    let head
+    if (aHead.element < bHead.element) {
+      head = aHead
+      aHead = aHead.next
+    } else {
+      head = bHead
+      bHead = bHead.next
+    }
+    let current = head
+    while (aHead || bHead) {
+      if (!aHead || !bHead) {
+        current.next = aHead || bHead
+        break
+      }
+      if (aHead.element < bHead.element) {
+        current.next = aHead
+        aHead = aHead.next
+      } else {
+        current.next = bHead
+        bHead = bHead.next
+      }
+      current = current.next
+    }
+    return head
+  }
+
+  function merge2(aHead, bHead) {
+    if (!aHead || !bHead) {
+      return aHead || bHead
+    }
+    let head
+    if (aHead.element < bHead.element) {
+      head = aHead
+      head.next = merge2(aHead.next, bHead)
+    } else {
+      head = bHead
+      head.next = merge2(aHead, bHead.next)
+    }
+    return head
+  }
+
+</script>
+</html>

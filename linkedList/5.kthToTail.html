@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>倒数第k个结点</title>
+</head>
+<body>
+  输入一个链表，输出该链表中倒数第k个结点。
+</body>
+<script src="LinkedList.js"></script>
+<script>
+  const linkedList = new LinkedList()
+  linkedList.append(1)
+  linkedList.append(2)
+  linkedList.append(3)
+  linkedList.append(4)
+  linkedList.append(5)
+  linkedList.append(6)
+  linkedList.append(7)
+  linkedList.append(8)
+  linkedList.append(9)
+
+  console.log(kthToTail(linkedList.head, 9));
+
+  function kthToTail(head, k) {
+    if (!head || k <= 0) {return null}
+    let front = head, i = 0
+    while (front && i++ < k) {
+      front = front.next
+    }
+    if (i < k) {return null}
+    let target = head
+    while (front) {
+      front = front.next
+      target = target.next
+    }
+    return target
+  }
+
+</script>
+</html>
