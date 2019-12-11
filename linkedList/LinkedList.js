@@ -88,15 +88,15 @@ class LinkedList {
     return true
   }
 
-  //获取链表指定位置的元素
-  getElement(position) {
+  //获取链表指定位置的元素或节点
+  getElement(position, type = 'element') {
     if (position < 0 || position >= this.length) {return null}
 
     let current = this.head, i = 0
     while (i++ !== position) {
       current = current.next
     }
-    return current.element
+    return type = 'node' ? current : current.element
   }
 
   toString() {

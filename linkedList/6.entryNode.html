@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>链表中环的入口节点</title>
+</head>
+<body>
+  给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。
+</body>
+<script src="LinkedList.js"></script>
+<script>
+  const linkedList = new LinkedList()
+  linkedList.append(1)
+  linkedList.append(2)
+  linkedList.append(3)
+  linkedList.append(4)
+  linkedList.append(5)
+  linkedList.append(6)
+
+  const last = linkedList.getElement(linkedList.length - 1, 'node')
+  const target = linkedList.getElement(2, 'node')
+  last.next = target
+  console.log(entryNodeOfLoop(linkedList.head));
+
+  function entryNodeOfLoop(head) {
+    if (!head) {return null}
+    
+    let n1 = head.next,
+        n2 = head.next ? head.next.next : null
+    while (n1 && n2 && n1.element !== n2.element) {
+      n1 = n1.next
+      n2 = n2.next ? n2.next.next : null
+    }
+
+    if (!n2) {return null}
+    n1 = head
+    while (n1.element !== n2.element) {
+      n1 = n1.next
+      n2 = n2.next
+    }
+    return n1.element
+  }
+</script>
+</html>
