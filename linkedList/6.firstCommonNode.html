@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>第一个公共节点</title>
+</head>
+<body>
+  输入两个链表，找出它们的第一个公共结点。
+</body>
+<script src="LinkedList.js"></script>
+<script>
+  const linkedList = new LinkedList()
+  linkedList.append(1)
+  linkedList.append(2)
+  linkedList.append(3)
+  linkedList.append(4)
+  linkedList.append(5)
+  linkedList.append(6)
+
+  const linkedList2 = new LinkedList()
+  linkedList2.append(7)
+  linkedList2.append(8)
+  linkedList2.append(4)
+  linkedList2.append(5)
+  linkedList2.append(6)
+
+  console.log(findFirstCommonNode(linkedList, linkedList2));
+
+  function findFirstCommonNode(aList, bList) {
+    if (!aList.length || !bList.length) {return null}
+
+    let {head: aHead, length: aLen} = aList,
+        {head: bHead, length: bLen} = bList,
+        index = 0
+    let current1 = aLen > bLen ? aHead : bHead,
+        current2 = aLen <= bLen ? aHead : bHead
+
+    while (index < Math.abs(aLen - bLen)) {
+      current1 = current1.next
+      index++
+    }
+
+    while (current1 && current1.element !== current2.element) {
+      current1 = current1.next
+      current2 = current2.next
+    }
+    return current1
+
+  }
+</script>
+</html>
