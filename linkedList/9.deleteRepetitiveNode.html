@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>删除重复的节点</title>
+</head>
+<body>
+  在一个排序好的链表中，删除重复的节点
+</body>
+<script src="LinkedList.js"></script>
+<script>
+  const linkedList = new LinkedList()
+  linkedList.append(1)
+  linkedList.append(2)
+  linkedList.append(2)
+  linkedList.append(2)
+  linkedList.append(3)
+  linkedList.append(3)
+  linkedList.append(4)
+  linkedList.append(5)
+  linkedList.append(5)
+  linkedList.append(5)
+  linkedList.append(6)
+  linkedList.append(6)
+  linkedList.append(6)
+
+  console.log(deleteRepetitiveNode(linkedList.head));
+  // console.log(deleteRepetition(linkedList.head));
+
+  function deleteRepetitiveNode(head) {
+    if (!head) {return null}
+
+    let current = head
+    while (current && current.next) {
+      if (current.element !== current.next.element) {
+        current = current.next
+        continue
+      }
+      let next = current.next
+      while(next && current.element === next.element) {
+        next = next.next
+      }
+      current.next = next
+      current = next
+    }
+    return head
+  }
+
+  function deleteRepetition(node) {
+    if (!node || !node.next) {return node}
+    if (node.element === node.next.element) {
+      return deleteRepetition(node.next)
+    }
+    node.next = deleteRepetition(node.next)
+    return node
+  }
+</script>
+</html>
