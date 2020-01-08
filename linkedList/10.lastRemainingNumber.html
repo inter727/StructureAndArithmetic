@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>圆圈中最后剩下的数字（约瑟夫环问题）</title>
+</head>
+<body>
+  0,1,...,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。
+  求出这个圆圈里剩下的最后一个数字。
+</body>
+<script src="LinkedList.js"></script>
+<script>
+  console.log(createCircle(10));
+
+  function getLastRemainingNumber(n, m) {
+    if (n < 0 || m < 0) {return null}
+
+    let { head, length } = createCircle(n)
+    while(length-- > 1) {
+      let i = 0
+      while (i++ === m) {
+
+      }
+    }
+  }
+
+  function createCircle(n) {
+    const linkedList = new LinkedList()
+    for (let i = 0; i < n; i++) {
+      linkedList.append(i)
+    }
+    linkedList.getElement(linkedList.length - 1, 'node').next = linkedList.head
+    return linkedList
+  }
+
+</script>
+</html>
