@@ -10,18 +10,21 @@
 </body>
 <script src="LinkedList.js"></script>
 <script>
-  console.log(createCircle(10));
+  console.log(getLastRemainingNumber(10, 3));
 
   function getLastRemainingNumber(n, m) {
-    if (n < 0 || m < 0) {return null}
+    if (n <= 0 || m <= 0) {return -1}
 
-    let { head, length } = createCircle(n)
+    let { head: current, length } = createCircle(n)
     while(length-- > 1) {
-      let i = 0
-      while (i++ === m) {
-
+      let i = 1
+      while (++i < m) {
+        current = current.next
       }
+      current.next = current.next.next
+      current = current.next
     }
+    return current.element
   }
 
   function createCircle(n) {
