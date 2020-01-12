@@ -10,7 +10,8 @@
 </body>
 <script src="LinkedList.js"></script>
 <script>
-  console.log(getLastRemainingNumber(6, 9));
+  console.log(getLastRemainingNumber(10, 4));
+  console.log(getLastRemainingNumber2(10, 4));
 
   function getLastRemainingNumber(n, m) {
     if (n < 1 || m < 1) {return -1}
@@ -30,6 +31,16 @@
       current.next = current.next.next
     }
     return current.element
+  }
+
+  function getLastRemainingNumber2(n, m) {
+    if (n < 1 || m < 1) {return -1}
+    return getLastNumber(n, m)
+  }
+
+  function getLastNumber(n, m) {
+    if (n === 1) {return 0}
+    return (getLastNumber(n - 1, m) + m)%n
   }
 </script>
 </html>
