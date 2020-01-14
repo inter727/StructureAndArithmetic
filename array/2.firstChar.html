@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>第一个自出现一次的字符</title>
+</head>
+<body>
+  在一个字符串(0<=字符串长度<=10000，全部由字母组成)中找到第一个只出现一次的字符,
+  并返回它的位置, 如果没有则返回-1（需要区分大小写）
+</body>
+<script>
+  console.log(firstNotRepeatingChar('abc;dbbc;'));
+
+  function firstNotRepeatingChar(str) {
+    if (!str) {return -1}
+
+    let arr = str.split('')
+    let charObj = arr.reduce((obj, item) => {
+      item in obj ? obj[item]++ : obj[item] = 1
+      return obj
+    }, {})
+
+    let minIndex = -1
+    arr.some((item, index) => {
+      if (charObj[item] > 1) {return false}
+      minIndex = index
+      return true
+    })
+    return minIndex
+  }
+</script>
+</html>
