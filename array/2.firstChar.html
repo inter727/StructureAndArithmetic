@@ -10,6 +10,7 @@
 </body>
 <script>
   console.log(firstNotRepeatingChar('abc;dbbc;'));
+  console.log(notRepeatingFirstChar('abc;dbabcd;'));
 
   function firstNotRepeatingChar(str) {
     if (!str) {return -1}
@@ -23,6 +24,18 @@
     let minIndex = -1
     arr.some((item, index) => {
       if (charObj[item] > 1) {return false}
+      minIndex = index
+      return true
+    })
+    return minIndex
+  }
+
+  function notRepeatingFirstChar(str) {
+    if (!str) { return -1 }
+
+    let minIndex = -1
+    str.split('').some((item, index, array) => {
+      if (array.indexOf(item) !== array.lastIndexOf(item)) { return false }
       minIndex = index
       return true
     })
