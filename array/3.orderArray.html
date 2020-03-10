@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>调整数组顺序，奇数位于偶数前面</title>
+</head>
+<body>
+  输入一个整数数组，实现一个函数来调整该数组中数字的顺序，
+  使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分
+</body>
+<script>
+  console.log(orderArray([1, 2, 3, 4, 5, 6, 7, 8, 77, 0]));
+
+  function orderArray(arr) {
+    let end = arr.length - 1
+    for (let i = 0; i < end; i++) {
+      if (arr[i] % 2 === 1) { continue }
+      while (arr[end] % 2 === 0) {
+        end--
+      }
+      [arr[i], arr[end]] = [arr[end], arr[i]]
+      end--
+    }
+    return arr
+  }
+</script>
+</html>
