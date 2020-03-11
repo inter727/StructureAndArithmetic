@@ -12,6 +12,8 @@
   console.log(multiply([2, 3, 4, 5, 1]));
 
   function multiply(arr) {
+    if (!Array.isArray(arr) || !arr.length) { return [] }
+
     let result = [1], len = arr.length
     for (let i = 1; i < len; i++) {
       result[i] = result[i - 1] * arr[i - 1]

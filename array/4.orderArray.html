@@ -12,12 +12,12 @@
   console.log(orderArray([1, 2, 3, 4, 5, 6, 7, 8, 77, 0]));
 
   function orderArray(arr) {
+    if (!Array.isArray(arr) || !arr.length) { return [] }
+
     let end = arr.length - 1
     for (let i = 0; i < end; i++) {
       if (arr[i] % 2 === 1) { continue }
-      while (arr[end] % 2 === 0) {
-        end--
-      }
+      while (arr[end] % 2 === 0) { end-- }
       [arr[i], arr[end]] = [arr[end], arr[i]]
       end--
     }

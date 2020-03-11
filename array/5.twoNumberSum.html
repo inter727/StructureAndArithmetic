@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>和为S的两个数字</title>
+</head>
+<body>
+  输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，
+  如果有多对数字的和等于S，输出两个数的乘积最小的。
+</body>
+<script>
+  console.log(twoNumberSum([1, 2, 3, 6, 8, 19], 8));
+
+  function twoNumberSum(arr, s) {
+    if (!Array.isArray(arr) || !arr.length || typeof s !== 'number') { return [] }
+
+    let end = arr.length - 1
+    for (let i = 0; i < end; i++) {
+      if (arr[i] + arr[end] < s) { continue }
+      while (arr[i] + arr[end] > s) { end-- }
+      if (arr[i] + arr[end] === s) {
+        return [arr[i], arr[end]]
+      }
+    }
+    return []
+  }
+</script>
+</html>
