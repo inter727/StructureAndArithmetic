@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>四数之和</title>
+</head>
+<body>
+  给定一个包含 n 个整数的数组nums，判断 nums 中是否存在四个元素a，b，c，d ，使得 a + b + c + d = 0 ？
+  找出所有满足条件且不重复的四元组。 注意：答案中不可以包含重复的四元组。
+</body>
+<script>
+  console.log(fourSum([1, 0, -1, 0, -2, 2]));
+
+  function fourSum(nums) {
+    if (!Array.isArray(nums) || !nums.length) { return [] }
+
+    return nums.sort((a, b) => a - b)
+      .reduce((prev, num, i, arr) => {
+        if (i > 0 && num === arr[i - 1]) { return prev }
+        for (let j = i + 1; j < arr.length; j++) {
+          if (j > i + 1 && arr[j] === arr[j - 1]) { continue }
+          let left = j + 1, right = arr.length - 1
+          while (left < right) {
+            const sum = num + arr[j] + arr[left] + arr[right]
+            if (sum < 0) {
+              left++
+              continue
+            }
+            if (sum > 0) {
+              right--
+              continue
+            }
+            prev.push([num, arr[j], arr[left++], arr[right--]])
+            while (arr[left] === arr[left - 1]) { left++ }
+            while (arr[right] === arr[right + 1]) { right-- }
+          }
+        }
+        return prev
+      }, [])
+  }
+</script>
+</html>

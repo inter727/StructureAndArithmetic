@@ -13,13 +13,12 @@
 
   function threeSum(nums) {
     if (!Array.isArray(nums) || !nums.length) { return [] }
-    console.log(nums.sort((a, b) => a - b));
 
     return nums.sort((a, b) => a - b)
       .reduce((prev, num, i, arr) => {
         if (i > 0 && num === arr[i - 1]) { return prev }
         let left = i + 1, right = arr.length - 1
-        while (arr[left] < arr[right]) {
+        while (left < right) {
           const sum = num + arr[left] + arr[right]
           if (sum < 0) {
             left++
@@ -29,9 +28,7 @@
             right--
             continue
           }
-          prev.push([num, arr[left], arr[right]])
-          left++
-          right--
+          prev.push([num, arr[left++], arr[right--]])
           while (arr[left] === arr[left - 1]) { left++ }
           while (arr[right] === arr[right + 1]) { right-- }
         }
