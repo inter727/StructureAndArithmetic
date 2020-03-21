@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>扑克牌顺子</title>
+</head>
+<body>
+  扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。
+  2-10为数字本身，A为1，J为11...大小王可以看成任何数字，可以把它当作0处理。
+</body>
+<script>
+
+
+  function isContinuous(pokers) {
+    if (!Array.isArray(pokers) || !pokers.length) { return false }
+
+    return pokers.sort((a, b) => a - b)
+      .every((poker, index, array) => array[index + 1] - poker === 1)
+  }
+</script>
+</html>

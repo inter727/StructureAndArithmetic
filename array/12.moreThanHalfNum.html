@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>次数超过数组长度一半的数字</title>
+</head>
+<body>
+  数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。
+  由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出NaN。
+</body>
+<script>
+  console.log(moreThanHalfNumSolution([1, 2, 3, 2, 2, 1, 5, 4, 2]));
+
+  function moreThanHalfNum(nums) {
+    if (!Array.isArray(nums) || !nums.length) { return NaN }
+
+    let obj = {},
+      result = NaN
+    nums.some((num, index, array) => {
+      num in obj ? obj[num]++ : obj[num] = 1
+      if (obj[num] <= array.length / 2) { return false }
+      result = num
+      return true
+    })
+    return result
+  }
+
+  function moreThanHalfNumSolution(nums) {
+    if (!Array.isArray(nums) || !nums.length) { return NaN }
+
+    let target = nums[0], count = 1
+    nums.forEach((num, index) => {
+      if (index === 0) { return }
+      if (num === target) {
+        count++
+      } else {
+        count--
+      }
+      if (count === 0) {
+        target = num
+        count = 1
+      }
+    })
+
+    count = 0
+    let isMoreThanHalf = nums.some((num, index, array) => {
+      if (num === target) { count++ }
+      return count > array.length / 2
+    })
+
+    return isMoreThanHalf ? target : NaN
+  }
+</script>
+</html>
