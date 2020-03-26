@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>数字在排序数组中出现的次数</title>
+</head>
+<body>
+  统计一个数字在排序数组中出现的次数。
+</body>
+<script>
+  console.log(targetNumberTimes([1, 1, 2, 2, 2, 4, 4, 4, 4, 5], 5));
+
+  function targetNumberTimes(arr, target) {
+    if (!Array.isArray(arr) || !arr.length || typeof target !== 'number') { return 0 }
+    if (arr[0] > target || arr[arr.length - 1] < target) { return 0 }
+
+    let len = arr.length - 1
+    let firstIndex = findFirstIndex(arr, target, 0, len)
+    return firstIndex > -1
+      ? findLastIndex(arr, target, 0, len) - firstIndex + 1
+      : 0
+  }
+
+  function findFirstIndex(arr, target, start, end) {
+    if (start > end) { return -1 }
+
+    let middle = Math.floor((start + end) / 2)
+    if(arr[middle] === target && arr[middle - 1] !== target) {
+      return middle
+    }
+    return arr[middle] < target
+      ? findFirstIndex(arr, target, middle + 1, end)
+      : findFirstIndex(arr, target, start, middle - 1)
+  }
+
+  function findLastIndex(arr, target, start, end) {
+    if (start > end) { return -1 }
+
+    let middle = Math.floor((start + end) / 2)
+    if (arr[middle] === target && arr[middle + 1] !== target) {
+      return middle
+    }
+    return arr[middle] > target
+      ? findLastIndex(arr, target, start, middle - 1)
+      : findLastIndex(arr, target, middle + 1, end)
+  }
+</script>
+</html>
