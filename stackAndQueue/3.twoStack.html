@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用两个栈实现队列</title>
+</head>
+<body>
+用两个栈来实现一个队列，完成队列的Push和Pop操作。
+</body>
+<script src="Queue.js"></script>
+<script>
+  const queue = new Queue()
+  queue.push(1)
+  queue.push(2)
+  queue.push(3)
+  console.log(queue.pop());
+  queue.push(4)
+  queue.push(5)
+  console.log(queue.pop());
+  console.log(queue.pop());
+  console.log(queue.pop());
+  queue.push(6)
+  queue.push(7)
+  console.log(queue.pop());
+  console.log(queue.pop());
+  console.log(queue.pop());
+  console.log(queue.pop());
+</script>
+</html>
