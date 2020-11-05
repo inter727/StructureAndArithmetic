@@ -17,7 +17,7 @@
     let stack = [], i = 0
     push.forEach(val => {
       stack.push(val)
-      while (stack[stack.length - 1] === pop[i] && i < pop.length) {
+      while (stack.length && stack[stack.length - 1] === pop[i]) {
         stack.pop()
         i++
       }
