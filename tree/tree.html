@@ -10,8 +10,10 @@
 <script src="tree.js"></script>
 <script>
   const node = new Node(1)
-  node.addNode(new Node(2))
+  const node1 = new Node(2)
+  node.addNode(node1)
   node.addNode(new Node(3))
-  console.log(node.children);
+  node.addNode(new Node(4))
+  console.log(node1.siblings());
 </script>
 </html>

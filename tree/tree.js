@@ -12,4 +12,7 @@ class Node {
     return this
   }
 
+  siblings() {
+    return this.parent.children.filter(n => n !== this)
+  }
 }
